@@ -99,16 +99,23 @@ sensor:
       - multiply: 0.01
   
   - platform: modbus_controller
-    modbus_controller_id: powersupply
-    address: 5
     id: temperature
     name: "Temperature"
+    modbus_controller_id: powersupply
     device_class: temperature
-    unit_of_measurement: "°C" ## for any other unit the value is returned in minutes
     register_type: holding
-    value_type: U_WORD
-    accuracy_decimals: 0
-
+    address: 4
+    value_type: S_DWORD
+    
+  - platform: modbus_controller
+    id: temperature_external
+    name: "Temperature external"
+    modbus_controller_id: powersupply
+    register_type: holding
+    address: 34
+    value_type: S_DWORD
+    device_class: temperature
+    
   - platform: uptime
     name: "RD6006 Uptime"
   
@@ -137,8 +144,8 @@ binary_sensor:
   device_class: lock
   register_type: holding
   address: 15
-  bitmask: 0x0
-
+  bitmask: 0x1
+  
 number:
   - platform: modbus_controller
     modbus_controller_id: powersupply
