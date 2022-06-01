@@ -59,16 +59,6 @@ modbus_controller:
     setup_priority: -10
     update_interval: 5s
 
-switch:
-  - platform: modbus_controller
-    modbus_controller_id: powersupply
-    id: backlight
-    name: "Backlight"
-    entity_category: config
-    register_type: holding
-    address: 72
-    bitmask: 1
-
 sensor:
   - platform: modbus_controller
     id: model
@@ -77,7 +67,7 @@ sensor:
     modbus_controller_id: powersupply
     address: 0
     skip_updates: 10
-    unit_of_measurement: "" ## for any other unit the value is returned in minutes
+    unit_of_measurement: ""
     register_type: holding
     value_type: U_WORD
     accuracy_decimals: 0
@@ -88,7 +78,7 @@ sensor:
     id: firmware
     name: "Firmware version"
     entity_category: diagnostic
-    unit_of_measurement: "" ## for any other unit the value is returned in minutes
+    unit_of_measurement: ""
     register_type: holding
     value_type: U_WORD
     accuracy_decimals: 2
@@ -101,7 +91,7 @@ sensor:
     id: input_voltage
     name: "Input voltage"
     device_class: voltage
-    unit_of_measurement: "V" ## for any other unit the value is returned in minutes
+    unit_of_measurement: "V"
     register_type: holding
     value_type: U_WORD
     accuracy_decimals: 2
@@ -137,3 +127,26 @@ text_sensor:
   - platform: version
     name: "RD6006 Version"
     hide_timestamp: true
+
+binary_sensor:
+- platform: modbus_controller
+  id: keypad_lock
+  name: "Keypad lock"
+  modbus_controller_id: powersupply
+  entity_category: diagnostic
+  device_class: lock
+  register_type: holding
+  address: 15
+  bitmask: 0x0
+
+number:
+  - platform: modbus_controller
+    modbus_controller_id: powersupply
+    id: backlight
+    name: "Backlight"
+    address: 72
+    entity_category: config
+    icon: "mdi:lightbulb"
+    value_type: U_WORD
+    min_value: 0
+    max_value: 5
