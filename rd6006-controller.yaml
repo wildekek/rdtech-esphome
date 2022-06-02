@@ -148,12 +148,48 @@ binary_sensor:
   
 number:
   - platform: modbus_controller
-    modbus_controller_id: powersupply
     id: backlight
     name: "Backlight"
-    address: 72
+    modbus_controller_id: powersupply
     entity_category: config
+    address: 72
     icon: "mdi:lightbulb"
     value_type: U_WORD
     min_value: 0
     max_value: 5
+
+  - platform: modbus_controller
+    modbus_controller_id: powersupply
+    id: output_voltage
+    name: "Output voltage"
+    address: 8
+    entity_category: config
+    icon: "mdi:sine-wave"
+    value_type: U_WORD
+    min_value: 0
+    max_value: 60
+    step: 0.01
+    multiply: 100
+  
+  - platform: modbus_controller
+    modbus_controller_id: powersupply
+    id: output_current
+    name: "Output current"
+    address: 9
+    entity_category: config
+    icon: "mdi:current-dc"
+    value_type: U_WORD
+    min_value: 0
+    max_value: 6
+    step: 0.01
+    multiply: 1000
+    
+switch:
+  - platform: modbus_controller
+    modbus_controller_id: powersupply
+    id: output
+    name: "Output"
+    address: 18
+    register_type: holding
+    bitmask: 0x1
+    entity_category: config
