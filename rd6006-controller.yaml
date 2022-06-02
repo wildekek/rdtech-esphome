@@ -61,7 +61,6 @@ modbus_controller:
 
 sensor:
   - platform: modbus_controller
-    id: model
     name: "Model Number"
     entity_category: diagnostic
     modbus_controller_id: powersupply
@@ -75,7 +74,6 @@ sensor:
   - platform: modbus_controller
     modbus_controller_id: powersupply
     address: 3
-    id: firmware
     name: "Firmware version"
     entity_category: diagnostic
     unit_of_measurement: ""
@@ -88,7 +86,6 @@ sensor:
   - platform: modbus_controller
     modbus_controller_id: powersupply
     address: 14
-    id: input_voltage
     name: "Input voltage"
     device_class: voltage
     unit_of_measurement: "V"
@@ -99,7 +96,6 @@ sensor:
       - multiply: 0.01
   
   - platform: modbus_controller
-    id: temperature
     name: "Temperature"
     modbus_controller_id: powersupply
     device_class: temperature
@@ -108,7 +104,6 @@ sensor:
     value_type: S_DWORD
     
   - platform: modbus_controller
-    id: temperature_external
     name: "Temperature external"
     modbus_controller_id: powersupply
     register_type: holding
@@ -137,7 +132,6 @@ text_sensor:
 
 binary_sensor:
 - platform: modbus_controller
-  id: keypad_lock
   name: "Keypad lock"
   modbus_controller_id: powersupply
   entity_category: diagnostic
@@ -148,7 +142,6 @@ binary_sensor:
   
 number:
   - platform: modbus_controller
-    id: backlight
     name: "Backlight"
     modbus_controller_id: powersupply
     entity_category: config
@@ -160,7 +153,6 @@ number:
 
   - platform: modbus_controller
     modbus_controller_id: powersupply
-    id: output_voltage
     name: "Output voltage"
     address: 8
     entity_category: config
@@ -173,7 +165,6 @@ number:
   
   - platform: modbus_controller
     modbus_controller_id: powersupply
-    id: output_current
     name: "Output current"
     address: 9
     entity_category: config
@@ -187,7 +178,6 @@ number:
 switch:
   - platform: modbus_controller
     modbus_controller_id: powersupply
-    id: output
     name: "Output"
     address: 18
     register_type: holding
