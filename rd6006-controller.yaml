@@ -11,14 +11,14 @@ esphome:
   name_add_mac_suffix: false
   project:
     name: "wildekek.rd6006-controller"
-    version: "1.0.0"
+    version: "1.1.0"
 
 esp8266:
   board: esp01_1m
 
 # Enable logging
 logger:
-  level: DEBUG
+  level: INFO
   # Disable logging via UART, since we're using this for modbus communication
   baud_rate: 0
 
@@ -27,7 +27,7 @@ status_led:
     pin:
       number: GPIO2
       inverted: true
-    
+
 # Enable Home Assistant API
 api:
   encryption:
@@ -47,7 +47,6 @@ wifi:
     password: !secret wifi_fallback_password
 captive_portal:
 
-
 uart:
   id: mod_bus
   tx_pin: GPIO1
@@ -62,7 +61,7 @@ modbus:
 
 modbus_controller:
   - id: powersupply
-    ## This address should be set to the value in the RD6006 config menu
+    ## This address should be set to the "Address" value in the config menu
     address: 0x01
     modbus_id: modbus1
     setup_priority: -10
@@ -115,10 +114,11 @@ sensor:
   - platform: modbus_controller
     name: "Temperature"
     modbus_controller_id: powersupply
-    device_class: temperature
     register_type: holding
     address: 4
     value_type: S_DWORD
+    device_class: temperature
+    unit_of_measurement: "°C"
     
   - platform: modbus_controller
     name: "Temperature external"
@@ -127,27 +127,13 @@ sensor:
     address: 34
     value_type: S_DWORD
     device_class: temperature
+    unit_of_measurement: "°C"
     
-  - platform: uptime
-    name: "RD6006 Uptime"
-  
   - platform: wifi_signal
-    name: "RD6006 Wi-Fi Signal"
+    name: "Wi-Fi Signal"
     update_interval: 60s
 
-text_sensor:
-  - platform: wifi_info
-    ip_address:
-      name: "RD6006 IP Address"
-    ssid:
-      name: "RD6006 Wi-Fi SSID"
-    bssid:
-      name: "RD6006 Wi-Fi BSSID"
-  - platform: version
-    name: "RD6006 Version"
-    hide_timestamp: true
-
-# Uptime is used internally only
+  # Uptime is used internally only
   - platform: uptime
     id: sensor_uptime
   # This sensor is an alternative for the uptime sensor, which only sends the
@@ -165,6 +151,18 @@ text_sensor:
       );
       return timestamp;
 
+
+text_sensor:
+  - platform: wifi_info
+    ip_address:
+      name: "IP Address"
+    ssid:
+      name: "Wi-Fi SSID"
+    bssid:
+      name: "Wi-Fi BSSID"
+  - platform: version
+    name: "Version"
+    hide_timestamp: true
 
 binary_sensor:
 - platform: modbus_controller
