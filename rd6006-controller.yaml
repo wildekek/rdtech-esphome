@@ -1,6 +1,13 @@
+substitutions:
+  device_name: "rd6006-controller"
+  device_friendly_name: "RD 6006"
+  device_description: "Power Supply"
+  time_timezone: "Europe/Amsterdam"
+
 esphome:
-  name: "rd6006-controller"
-  comment: "Controls RD6006 PSU over MODBUS"
+  name: $device_name
+  friendly_name: $device_friendly_name
+  comment: $device_description
   name_add_mac_suffix: false
   project:
     name: "wildekek.rd6006-controller"
@@ -23,21 +30,23 @@ status_led:
     
 # Enable Home Assistant API
 api:
-  reboot_timeout: 1h
+  encryption:
+    key: !secret home_assistant_key
 
 ota:
-  password: "7f0a9c6493bf369b303410ce4915d3b4"
+  password: !secret ota_password
 
+# Configure WiFi
 wifi:
   ssid: !secret wifi_ssid
   password: !secret wifi_password
 
-# Enable fallback hotspot (captive portal) in case wifi connection fails
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
   ap:
-    ssid: "Rd6006 Fallback Hotspot"
-    password: "BgDmzEZwl9tB"
-
+    ssid: $device_friendly_name
+    password: !secret wifi_fallback_password
 captive_portal:
+
 
 uart:
   id: mod_bus
