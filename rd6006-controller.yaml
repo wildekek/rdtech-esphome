@@ -68,6 +68,14 @@ modbus_controller:
     setup_priority: -10
     update_interval: 5s
 
+time:
+  # Get the time from HA, so we can use it for uptime
+  - platform: homeassistant
+    id: time_homeassistant
+    timezone: "${time_timezone}"
+    on_time_sync:
+      - component.update: sensor_uptime_timestamp
+
 sensor:
   - platform: modbus_controller
     name: "Model Number"
@@ -138,6 +146,25 @@ text_sensor:
   - platform: version
     name: "RD6006 Version"
     hide_timestamp: true
+
+# Uptime is used internally only
+  - platform: uptime
+    id: sensor_uptime
+  # This sensor is an alternative for the uptime sensor, which only sends the
+  # startup timestamp of the device to home assistant once
+  - platform: template
+    id: sensor_uptime_timestamp
+    name: "Uptime"
+    entity_category: diagnostic
+    device_class: "timestamp"
+    accuracy_decimals: 0
+    update_interval: never
+    lambda: |-
+      static float timestamp = (
+        id(time_homeassistant).utcnow().timestamp - id(sensor_uptime).state
+      );
+      return timestamp;
+
 
 binary_sensor:
 - platform: modbus_controller
