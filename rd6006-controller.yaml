@@ -11,7 +11,7 @@ esphome:
   name_add_mac_suffix: false
   project:
     name: "wildekek.rd6006-controller"
-    version: "1.2.0"
+    version: "1.2.1"
 
 esp8266:
   board: esp01_1m
@@ -73,7 +73,26 @@ time:
     id: time_homeassistant
     timezone: "${time_timezone}"
     on_time_sync:
+      - logger.log: Time has been set and is valid!
       - component.update: sensor_uptime_timestamp
+      - number.set:
+          id: date_year
+          value: !lambda return id(time_homeassistant).now().year;
+      - number.set:
+          id: date_month
+          value: !lambda return id(time_homeassistant).now().month;
+      - number.set:
+          id: date_day
+          value: !lambda return id(time_homeassistant).now().day_of_month;
+      - number.set:
+          id: date_hour
+          value: !lambda return id(time_homeassistant).now().hour;
+      - number.set:
+          id: date_minute
+          value: !lambda return id(time_homeassistant).now().minute;
+      - number.set:
+          id: date_second
+          value: !lambda return id(time_homeassistant).now().second;
 
 sensor:
   - platform: modbus_controller
@@ -200,7 +219,6 @@ sensor:
       );
       return timestamp;
 
-
 text_sensor:
   - platform: wifi_info
     ip_address:
@@ -265,7 +283,51 @@ number:
     max_value: 6
     step: 0.01
     multiply: 1000
-    
+
+  # Date components are kept internal
+  - platform: modbus_controller
+    id: date_year
+    modbus_controller_id: powersupply
+    entity_category: diagnostic
+    register_type: holding
+    address: 48
+    value_type: U_WORD
+  - platform: modbus_controller
+    id: date_month
+    modbus_controller_id: powersupply
+    entity_category: diagnostic
+    register_type: holding
+    address: 49
+    value_type: U_WORD
+  - platform: modbus_controller
+    id: date_day
+    modbus_controller_id: powersupply
+    entity_category: diagnostic
+    register_type: holding
+    address: 50
+    value_type: U_WORD
+  - platform: modbus_controller
+    id: date_hour
+    modbus_controller_id: powersupply
+    entity_category: diagnostic
+    register_type: holding
+    address: 51
+    value_type: U_WORD
+  - platform: modbus_controller
+    id: date_minute
+    modbus_controller_id: powersupply
+    entity_category: diagnostic
+    register_type: holding
+    address: 52
+    value_type: U_WORD
+  - platform: modbus_controller
+    id: date_second
+    modbus_controller_id: powersupply
+    entity_category: diagnostic
+    register_type: holding
+    address: 53
+    value_type: U_WORD
+
 switch:
   - platform: modbus_controller
     modbus_controller_id: powersupply
