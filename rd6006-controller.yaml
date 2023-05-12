@@ -98,7 +98,56 @@ sensor:
     accuracy_decimals: 2
     filters:
       - multiply: 0.01
-  
+
+  - platform: modbus_controller
+    modbus_controller_id: powersupply
+    address: 10
+    name: "Output voltage"
+    device_class: voltage
+    unit_of_measurement: "V"
+    register_type: holding
+    value_type: U_WORD
+    accuracy_decimals: 3
+    filters:
+      - multiply: 0.01
+
+  - platform: modbus_controller
+    modbus_controller_id: powersupply
+    address: 33
+    name: "Battery voltage"
+    device_class: voltage
+    unit_of_measurement: "V"
+    register_type: holding
+    value_type: U_WORD
+    accuracy_decimals: 3
+    filters:
+      - multiply: 0.01
+
+  - platform: modbus_controller
+    modbus_controller_id: powersupply
+    address: 40
+    name: "Battery energy"
+    device_class: "energy_storage"
+    unit_of_measurement: "Wh"
+    icon: "mdi:battery-60"
+    register_type: holding
+    value_type: U_DWORD
+    accuracy_decimals: 3
+    filters:
+      - multiply: 0.001
+
+  - platform: modbus_controller
+    modbus_controller_id: powersupply
+    address: 11
+    name: "Output current"
+    device_class: current
+    unit_of_measurement: "A"
+    register_type: holding
+    value_type: U_WORD
+    accuracy_decimals: 3
+    filters:
+      - multiply: 0.001
+
   - platform: modbus_controller
     modbus_controller_id: powersupply
     address: 14
@@ -165,14 +214,22 @@ text_sensor:
     hide_timestamp: true
 
 binary_sensor:
-- platform: modbus_controller
-  name: "Keypad lock"
-  modbus_controller_id: powersupply
-  entity_category: diagnostic
-  device_class: lock
-  register_type: holding
-  address: 15
-  bitmask: 0x1
+  - platform: modbus_controller
+    modbus_controller_id: powersupply
+    address: 15
+    name: "Keypad lock"
+    entity_category: diagnostic
+    device_class: lock
+    register_type: holding
+    bitmask: 0x1
+  - platform: modbus_controller
+    modbus_controller_id: powersupply
+    address: 32
+    name: "Battery mode"
+    device_class: battery_charging
+    register_type: holding
+    bitmask: 0x1
+
   
 number:
   - platform: modbus_controller
