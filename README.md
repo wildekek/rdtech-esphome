@@ -7,9 +7,9 @@ It is a replacement for the (frankly terrible) software running on the Riden WiF
 The functionality is currently *very* limited, but can easily be extended by borrowing ideas from https://github.com/Baldanos/rd6006, which was a huge inspiration for this project.
 
 ## What you'll need:
-- A Riden RD6006 power supply
-- An FTDI adapter
-- A Home Assistant installation [with ESPHome](https://esphome.io/guides/getting_started_hassio.html)
+- A [Riden RD6006](https://rdtech.aliexpress.com/store/923042) power supply
+- An [FTDI adapter](https://www.aliexpress.com/item/32273550144.html)
+- A [Home Assistant](https://www.home-assistant.io/) installation [with ESPHome](https://esphome.io/guides/getting_started_hassio.html)
 
 ## How to:
 - Flash your RD6006 with the [UniSoft firmware](https://github.com/wildekek/riden-firmware-unisoft)
