@@ -4,10 +4,11 @@ This device allows you to control a Riden RD6006 Power Supply via [Home Assistan
 
 It is a replacement for the (frankly terrible) software running on the Riden WiFi module and intended as a replacement for their mobile apps and Windows software.
 
-The functionality is currently *very* limited, but can easily be extended by borrowing ideas from https://github.com/Baldanos/rd6006, which was a huge inspiration for this project.
+## Credits
+This repo was based on a Python project by [Baldanos](https://github.com/Baldanos/rd6006).
 
 ## What you'll need:
-- A [Riden RD6006](https://rdtech.aliexpress.com/store/923042) power supply
+- A [Riden RD6006](https://rdtech.aliexpress.com/store/923042) power supply with WiFi module
 - An [FTDI adapter](https://www.aliexpress.com/item/32273550144.html)
 - A [Home Assistant](https://www.home-assistant.io/) installation [with ESPHome](https://esphome.io/guides/getting_started_hassio.html)
 
