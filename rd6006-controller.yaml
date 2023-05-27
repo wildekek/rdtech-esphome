@@ -284,6 +284,19 @@ number:
     step: 0.01
     multiply: 1000
 
+  - platform: modbus_controller
+    modbus_controller_id: powersupply
+    name: "Over Voltage Protection"
+    device_class: voltage
+    unit_of_measurement: "V"
+    address: 82
+    entity_category: config
+    value_type: U_WORD
+    min_value: 0
+    max_value: 62
+    step: 0.01
+    multiply: 100
+
   # Date components are kept internal
   - platform: modbus_controller
     id: date_year
