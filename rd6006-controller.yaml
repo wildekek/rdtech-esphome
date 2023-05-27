@@ -169,6 +169,14 @@ sensor:
 
   - platform: modbus_controller
     modbus_controller_id: powersupply
+    address: 16
+    id: "protection_status"
+    register_type: holding
+    value_type: U_WORD
+    accuracy_decimals: 0
+
+  - platform: modbus_controller
+    modbus_controller_id: powersupply
     address: 14
     name: "Input voltage"
     device_class: voltage
@@ -247,6 +255,26 @@ binary_sensor:
     device_class: battery_charging
     register_type: holding
     bitmask: 0x1
+  - platform: template
+    name: "Over Voltage Protection"
+    entity_category: diagnostic
+    device_class: problem
+    lambda: |-
+      if (id(protection_status).state == 1) {
+        return true;
+      } else {
+        return false;
+      }
+  - platform: template
+    name: "Over Current Protection"
+    entity_category: diagnostic
+    device_class: problem
+    lambda: |-
+      if (id(protection_status).state == 2) {
+        return true;
+      } else {
+        return false;
+      }
 
   
 number:
