@@ -265,7 +265,6 @@ binary_sensor:
     bitmask: 0x1
   - platform: template
     name: "Over Voltage Protection"
-    entity_category: diagnostic
     device_class: problem
     lambda: |-
       if (id(protection_status).state == 1) {
@@ -275,7 +274,6 @@ binary_sensor:
       }
   - platform: template
     name: "Over Current Protection"
-    entity_category: diagnostic
     device_class: problem
     lambda: |-
       if (id(protection_status).state == 2) {
