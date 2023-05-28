@@ -141,6 +141,7 @@ sensor:
     address: 10
     name: "Output voltage"
     device_class: voltage
+    state_class: measurement
     unit_of_measurement: "V"
     register_type: holding
     value_type: U_WORD
@@ -150,9 +151,36 @@ sensor:
 
   - platform: modbus_controller
     modbus_controller_id: powersupply
+    address: 11
+    name: "Output current"
+    device_class: current
+    state_class: measurement
+    unit_of_measurement: "A"
+    register_type: holding
+    value_type: U_WORD
+    accuracy_decimals: 3
+    filters:
+      - multiply: 0.001
+
+  - platform: modbus_controller
+    modbus_controller_id: powersupply
+    address: 12
+    name: "Output Power"
+    device_class: power
+    state_class: measurement
+    unit_of_measurement: "W"
+    register_type: holding
+    value_type: U_DWORD
+    accuracy_decimals: 2
+    filters:
+      - multiply: 0.01
+
+  - platform: modbus_controller
+    modbus_controller_id: powersupply
     address: 33
     name: "Battery voltage"
     device_class: voltage
+    state_class: measurement
     unit_of_measurement: "V"
     register_type: holding
     value_type: U_WORD
@@ -165,22 +193,11 @@ sensor:
     address: 40
     name: "Battery energy"
     device_class: "energy_storage"
+    state_class: measurement
     unit_of_measurement: "Wh"
     icon: "mdi:battery-60"
     register_type: holding
     value_type: U_DWORD
-    accuracy_decimals: 3
-    filters:
-      - multiply: 0.001
-
-  - platform: modbus_controller
-    modbus_controller_id: powersupply
-    address: 11
-    name: "Output current"
-    device_class: current
-    unit_of_measurement: "A"
-    register_type: holding
-    value_type: U_WORD
     accuracy_decimals: 3
     filters:
       - multiply: 0.001
@@ -215,15 +232,17 @@ sensor:
   
   - platform: modbus_controller
     name: "Temperature"
+    device_class: temperature
+    state_class: measurement
     modbus_controller_id: powersupply
     register_type: holding
     address: 4
     value_type: S_DWORD
-    device_class: temperature
     unit_of_measurement: "°C"
     
   - platform: modbus_controller
     name: "Temperature external"
+    state_class: measurement
     modbus_controller_id: powersupply
     register_type: holding
     address: 34
