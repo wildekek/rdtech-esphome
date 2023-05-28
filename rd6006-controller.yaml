@@ -96,6 +96,7 @@ time:
 
 sensor:
   - platform: modbus_controller
+    id: model_number
     name: "Model Number"
     entity_category: diagnostic
     disabled_by_default: True
@@ -106,6 +107,10 @@ sensor:
     register_type: holding
     value_type: U_WORD
     accuracy_decimals: 0
+    on_value:
+      then:
+        - lambda: |-
+            id(model_name).publish_state(value_accuracy_to_string(x, 0));
 
   - platform: modbus_controller
     name: "Serial Number"
@@ -260,6 +265,18 @@ text_sensor:
     bssid:
       name: "Wi-Fi BSSID"
       disabled_by_default: True
+  - platform: template
+    id: model_name
+    name: "Model Name"
+    entity_category: diagnostic
+    # Updated by model number
+    update_interval: never
+    filters:
+      - map:
+        - 60062 -> RD6006
+        - 60065 -> RD6006P
+        - 60121 -> RD6012
+        - 60181 -> RD6018
 
 binary_sensor:
   - platform: modbus_controller
