@@ -98,6 +98,7 @@ sensor:
   - platform: modbus_controller
     name: "Model Number"
     entity_category: diagnostic
+    disabled_by_default: True
     modbus_controller_id: powersupply
     address: 0
     skip_updates: 10
@@ -122,6 +123,7 @@ sensor:
     address: 3
     name: "Firmware version"
     entity_category: diagnostic
+    disabled_by_default: True
     unit_of_measurement: ""
     register_type: holding
     value_type: U_WORD
@@ -226,6 +228,7 @@ sensor:
     
   - platform: wifi_signal
     name: "Wi-Fi Signal"
+    disabled_by_default: True
     update_interval: 60s
 
   # Uptime is used internally only
@@ -250,10 +253,13 @@ text_sensor:
   - platform: wifi_info
     ip_address:
       name: "IP Address"
+      disabled_by_default: True
     ssid:
       name: "Wi-Fi SSID"
+      disabled_by_default: True
     bssid:
       name: "Wi-Fi BSSID"
+      disabled_by_default: True
   - platform: version
     name: "Version"
     hide_timestamp: true
