@@ -415,3 +415,7 @@ switch:
     register_type: holding
     bitmask: 0x1
     entity_category: config
+
+button:
+  - platform: safe_mode
+    name: "Safe mode"
