@@ -262,7 +262,7 @@ binary_sensor:
     modbus_controller_id: powersupply
     address: 32
     name: "Battery mode"
-    device_class: battery_charging
+    device_class: connectivity
     register_type: holding
     bitmask: 0x1
   - platform: template
