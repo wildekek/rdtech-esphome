@@ -260,9 +260,6 @@ text_sensor:
     bssid:
       name: "Wi-Fi BSSID"
       disabled_by_default: True
-  - platform: version
-    name: "Version"
-    hide_timestamp: true
 
 binary_sensor:
   - platform: modbus_controller
