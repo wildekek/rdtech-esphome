@@ -25,3 +25,6 @@ This repo was based on a Python project by [Baldanos](https://github.com/Baldano
 
 ## Features
 <img width="825" alt="image" src="https://github.com/wildekek/rd6006-controller/assets/2332647/e5a712ff-85f0-40c0-9eed-f98f387a32b2">
+
+## Dashboard example
+<img width="1113" alt="image" src="https://github.com/wildekek/riden-esphome/assets/2332647/cef2e02a-3b41-40e4-894a-8eb2d8841829">
