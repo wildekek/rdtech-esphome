@@ -4,6 +4,18 @@ This device allows you to control the RDTech (aka Riden) RD series of power supp
 
 It is a replacement for the (frankly terrible) software running on the Riden WiFi module and intended as a replacement for their mobile apps and Windows software.
 
+## Model support
+
+✅ RD6006:  Supported and tested. Just download the latest release and off you go.
+
+❓ RD6006P: Needs testing: check out the latest release candidate (> 1.4)
+
+❓ RD60012: Needs testing: check out the latest release candidate (> 1.4)
+
+❓ RD60018: Needs testing: check out the latest release candidate (> 1.4)
+
+🛑 RD60024: Not supported. You're welcome to make a pull request :)
+
 ## Credits
 This repo was based on a Python project by [Baldanos](https://github.com/Baldanos/rd6006).
 
