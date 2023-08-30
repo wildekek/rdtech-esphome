@@ -26,7 +26,7 @@ This repo was based on a Python project by [Baldanos](https://github.com/Baldano
 
 ## How to:
 - Flash your device with the [UniSoft firmware](https://github.com/wildekek/riden-firmware-unisoft)
-- Create a new ESPHome device and load this [configuration](/rd6006-controller.yaml)
+- Create a new ESPHome device and load this [configuration](/rdtech-powersupply.yaml)
 - Update your WiFi credentials in ESPHome
 - [Flash the Riden WiFi module with ESPHome](https://esphome.io/guides/physical_device_connection.html)
 - Set the right settings in the Riden power supply:
