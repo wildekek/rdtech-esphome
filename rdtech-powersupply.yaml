@@ -22,19 +22,19 @@ substitutions:
   RD6006P_current_accuracy: "4"
   RD6006P_current_multiplier: "0.0001"
 
-  RD60012_voltage_maximum: "60"
-  RD60012_voltage_accuracy: "2"
-  RD60012_voltage_multiplier: "0.01"
-  RD60012_current_maximum: "12"
-  RD60012_current_accuracy: "2"
-  RD60012_current_multiplier: "0.01"
+  RD6012_voltage_maximum: "60"
+  RD6012_voltage_accuracy: "2"
+  RD6012_voltage_multiplier: "0.01"
+  RD6012_current_maximum: "12"
+  RD6012_current_accuracy: "2"
+  RD6012_current_multiplier: "0.01"
 
-  RD60018_voltage_maximum: "60"
-  RD60018_voltage_accuracy: "2"
-  RD60018_voltage_multiplier: "0.01"
-  RD60018_current_maximum: "18"
-  RD60018_current_accuracy: "2"
-  RD60018_current_multiplier: "0.01"
+  RD6018_voltage_maximum: "60"
+  RD6018_voltage_accuracy: "2"
+  RD6018_voltage_multiplier: "0.01"
+  RD6018_current_maximum: "18"
+  RD6018_current_accuracy: "2"
+  RD6018_current_multiplier: "0.01"
 
 esphome:
   name: $device_name
