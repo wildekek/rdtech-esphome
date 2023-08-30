@@ -1,8 +1,40 @@
 substitutions:
+  # Change this model to fit your particular one.
+  # You can find it in Home Assistant as the device diagnostic "Model Name".
+  model: "RD6006"
   device_name: "rd6006-controller"
   device_friendly_name: "RD 6006"
   device_description: "Power Supply"
   time_timezone: "Europe/Amsterdam"
+  
+  # Model specific settings (Don't change these!)
+  RD6006_voltage_maximum: "60"
+  RD6006_voltage_accuracy: "2"
+  RD6006_voltage_multiplier: "0.01"
+  RD6006_current_maximum: "6"
+  RD6006_current_accuracy: "3"
+  RD6006_current_multiplier: "0.001"
+  
+  RD6006P_voltage_maximum: "60"
+  RD6006P_voltage_accuracy: "3"
+  RD6006P_voltage_multiplier: "0.001"
+  RD6006P_current_maximum: "6"
+  RD6006P_current_accuracy: "4"
+  RD6006P_current_multiplier: "0.0001"
+
+  RD60012_voltage_maximum: "60"
+  RD60012_voltage_accuracy: "2"
+  RD60012_voltage_multiplier: "0.01"
+  RD60012_current_maximum: "12"
+  RD60012_current_accuracy: "2"
+  RD60012_current_multiplier: "0.01"
+
+  RD60018_voltage_maximum: "60"
+  RD60018_voltage_accuracy: "2"
+  RD60018_voltage_multiplier: "0.01"
+  RD60018_current_maximum: "18"
+  RD60018_current_accuracy: "2"
+  RD60018_current_multiplier: "0.01"
 
 esphome:
   name: $device_name
@@ -145,9 +177,9 @@ sensor:
     unit_of_measurement: "V"
     register_type: holding
     value_type: U_WORD
-    accuracy_decimals: 3
+    accuracy_decimals: ${${model}_voltage_accuracy}
     filters:
-      - multiply: 0.01
+      - multiply: ${${model}_voltage_multiplier}
 
   - platform: modbus_controller
     modbus_controller_id: powersupply
@@ -158,9 +190,9 @@ sensor:
     unit_of_measurement: "A"
     register_type: holding
     value_type: U_WORD
-    accuracy_decimals: 3
+    accuracy_decimals: ${${model}_current_accuracy}
     filters:
-      - multiply: 0.001
+      - multiply: ${${model}_current_multiplier}
 
   - platform: modbus_controller
     modbus_controller_id: powersupply
@@ -184,9 +216,9 @@ sensor:
     unit_of_measurement: "V"
     register_type: holding
     value_type: U_WORD
-    accuracy_decimals: 3
+    accuracy_decimals: ${${model}_voltage_accuracy}
     filters:
-      - multiply: 0.01
+      - multiply: ${${model}_voltage_multiplier}
 
   - platform: modbus_controller
     modbus_controller_id: powersupply
@@ -210,9 +242,9 @@ sensor:
     unit_of_measurement: "V"
     register_type: holding
     value_type: U_WORD
-    accuracy_decimals: 2
+    accuracy_decimals: ${${model}_voltage_accuracy}
     filters:
-      - multiply: 0.01
+      - multiply: ${${model}_voltage_multiplier}
   
   - platform: modbus_controller
     name: "Temperature"
@@ -348,9 +380,10 @@ number:
     address: 8
     value_type: U_WORD
     min_value: 0
-    max_value: 60
-    step: 0.01
-    multiply: 100
+    max_value: ${${model}_voltage_maximum}
+    step: ${${model}_voltage_multiplier}
+    lambda: !lambda return x * ${${model}_voltage_multiplier};
+    write_lambda: !lambda return x * (1/${${model}_voltage_multiplier});
   
   - platform: modbus_controller
     modbus_controller_id: powersupply
@@ -361,9 +394,10 @@ number:
     address: 9
     value_type: U_WORD
     min_value: 0
-    max_value: 6
-    step: 0.001
-    multiply: 1000
+    max_value: ${${model}_current_maximum}
+    step: ${${model}_current_multiplier}
+    lambda: !lambda return x * ${${model}_current_multiplier};
+    write_lambda: !lambda return x * (1/${${model}_current_multiplier});
 
   - platform: modbus_controller
     modbus_controller_id: powersupply
@@ -374,9 +408,11 @@ number:
     entity_category: config
     value_type: U_WORD
     min_value: 0
-    max_value: 62
-    step: 0.01
-    multiply: 100
+    max_value: ${${model}_voltage_maximum}
+    step: ${${model}_voltage_multiplier}
+    lambda: !lambda return x * ${${model}_voltage_multiplier};
+    write_lambda: !lambda return x * (1/${${model}_voltage_multiplier});
+
 
   - platform: modbus_controller
     modbus_controller_id: powersupply
@@ -387,9 +423,10 @@ number:
     entity_category: config
     value_type: U_WORD
     min_value: 0
-    max_value: 6
-    step: 0.01
-    multiply: 1000
+    max_value: ${${model}_current_maximum}
+    step: ${${model}_current_multiplier}
+    lambda: !lambda return x * ${${model}_current_multiplier};
+    write_lambda: !lambda return x * (1/${${model}_current_multiplier});
 
   # Date components are kept internal
   - platform: modbus_controller
