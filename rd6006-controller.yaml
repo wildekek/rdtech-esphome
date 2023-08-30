@@ -204,22 +204,6 @@ sensor:
 
   - platform: modbus_controller
     modbus_controller_id: powersupply
-    address: 16
-    id: "protection_status"
-    register_type: holding
-    value_type: U_WORD
-    accuracy_decimals: 0
-
-  - platform: modbus_controller
-    modbus_controller_id: powersupply
-    address: 17
-    id: "cv_cc_status"
-    register_type: holding
-    value_type: U_WORD
-    accuracy_decimals: 0
-
-  - platform: modbus_controller
-    modbus_controller_id: powersupply
     address: 14
     name: "Input voltage"
     device_class: voltage
@@ -315,40 +299,34 @@ binary_sensor:
     device_class: connectivity
     register_type: holding
     bitmask: 0x1
-  - platform: template
+  - platform: modbus_controller
+    modbus_controller_id: powersupply
     name: "Over Voltage Protection"
     device_class: problem
-    lambda: |-
-      if (id(protection_status).state == 1) {
-        return true;
-      } else {
-        return false;
-      }
-  - platform: template
+    address: 16
+    register_type: holding
+    bitmask: 0x1
+  - platform: modbus_controller
+    modbus_controller_id: powersupply
     name: "Over Current Protection"
     device_class: problem
-    lambda: |-
-      if (id(protection_status).state == 2) {
-        return true;
-      } else {
-        return false;
-      }
-  - platform: template
+    address: 16
+    register_type: holding
+    bitmask: 0x2
+  - platform: modbus_controller
+    modbus_controller_id: powersupply
     name: "Constant Voltage"
-    lambda: |-
-      if (id(cv_cc_status).state == 0) {
-        return true;
-      } else {
-        return false;
-      }
-  - platform: template
+    address: 17
+    register_type: holding
+    bitmask: 0x1
+    filters:
+      - invert:
+  - platform: modbus_controller
+    modbus_controller_id: powersupply
     name: "Constant Current"
-    lambda: |-
-      if (id(cv_cc_status).state == 1) {
-        return true;
-      } else {
-        return false;
-      }
+    address: 17
+    register_type: holding
+    bitmask: 0x1
 
 number:
   - platform: modbus_controller
