@@ -1,20 +1,16 @@
 # RDTech Power Supply Controller via ESPHome
 
-This device allows you to control the RDTech (aka Riden) RD series of power supplies via [Home Assistant](https://www.home-assistant.io/). It uses [ESPHome](https://esphome.io/) to abstract modbus commands and expose them to Home Assistant and makes it super easy to interface with your device over WiFi.
+This is a configuration for [ESPHome](https://esphome.io/) that allows you to control the RDTech (aka Riden/Riuden) RD series of power supplies via [Home Assistant](https://www.home-assistant.io/).
 
-It is a replacement for the (frankly terrible) software running on the Riden WiFi module and intended as a replacement for their mobile apps and Windows software.
+![image](https://github.com/wildekek/rdtech-esphome/assets/2332647/bd71e5d8-c1b3-44ad-8bbc-08e48c079813)
+
 
 ## Model support
-
-✅ RD6006:  Supported and tested. Just download the latest release and off you go.
-
-❓ RD6006P: Needs testing: check out the latest release candidate (> 1.4)
-
-❓ RD6012: Needs testing: check out the latest release candidate (> 1.4)
-
-❓ RD6018: Needs testing: check out the latest release candidate (> 1.4)
-
-🛑 RD6024: Not supported. You're welcome to make a pull request :)
+* RD6006: ✅ Supported and tested. Just download the latest release and off you go.
+* RD6018: ✅ Supported and tested. Download the latest release candidate.
+* RD6006P:❓ Needs testing: check out the latest release candidate and share your results [here](https://github.com/wildekek/rdtech-esphome/issues/5)
+* RD6012: ❓ Needs testing: check out the latest release candidate and share your results [here](https://github.com/wildekek/rdtech-esphome/issues/5)
+* RD6024: 🛑 Not properly supported, as there is no Unisoft firmware yet.
 
 ## Credits
 This repo was based on a Python project by [Baldanos](https://github.com/Baldanos/rd6006).
