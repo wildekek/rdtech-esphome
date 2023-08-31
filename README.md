@@ -21,7 +21,7 @@ This repo was based on a Python project by [Baldanos](https://github.com/Baldano
 - A [Home Assistant](https://www.home-assistant.io/) installation [with ESPHome](https://esphome.io/guides/getting_started_hassio.html)
 
 ## How to:
-- Flash your device with the [UniSoft firmware](https://github.com/wildekek/riden-firmware-unisoft)
+- Flash your device with the [UniSoft firmware](https://github.com/wildekek/rdtech-firmware-unisoft)
 - Create a new ESPHome device and load this [configuration](/rdtech-powersupply.yaml)
 - Update your WiFi credentials in ESPHome
 - [Flash the Riden WiFi module with ESPHome](https://esphome.io/guides/physical_device_connection.html)
