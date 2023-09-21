@@ -223,7 +223,7 @@ sensor:
   - platform: modbus_controller
     modbus_controller_id: powersupply
     address: 38
-    name: "Battery capacity"
+    name: "Battery charge"
     device_class: "energy_storage"
     state_class: measurement
     unit_of_measurement: "Ah"
