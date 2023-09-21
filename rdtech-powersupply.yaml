@@ -222,6 +222,20 @@ sensor:
 
   - platform: modbus_controller
     modbus_controller_id: powersupply
+    address: 38
+    name: "Battery charge"
+    device_class: "energy_storage"
+    state_class: measurement
+    unit_of_measurement: "Ah"
+    icon: "mdi:battery-60"
+    register_type: holding
+    value_type: U_DWORD
+    accuracy_decimals: 3
+    filters:
+      - multiply: 0.001
+
+  - platform: modbus_controller
+    modbus_controller_id: powersupply
     address: 40
     name: "Battery energy"
     device_class: "energy_storage"
