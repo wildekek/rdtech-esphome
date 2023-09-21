@@ -6,10 +6,10 @@ This is a configuration for [ESPHome](https://esphome.io/) that allows you to co
 
 
 ## Model support
-* RD6006: ✅ Supported and tested. Just download the latest release and off you go.
-* RD6018: ✅ Supported and tested. Download the latest release candidate.
-* RD6006P:❓ Needs testing: check out the latest release candidate and share your results [here](https://github.com/wildekek/rdtech-esphome/issues/5)
-* RD6012: ❓ Needs testing: check out the latest release candidate and share your results [here](https://github.com/wildekek/rdtech-esphome/issues/5)
+* RD6006: ✅
+* RD6018: ✅
+* RD6006P:✅
+* RD6012: ✅
 * RD6024: 🛑 Not properly supported, as there is no Unisoft firmware yet.
 
 ## Credits
