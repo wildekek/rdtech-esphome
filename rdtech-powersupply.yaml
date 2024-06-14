@@ -14,6 +14,8 @@ substitutions:
   RD6006_current_maximum: "6"
   RD6006_current_accuracy: "3"
   RD6006_current_multiplier: "0.001"
+  RD6006_power_accuracy: "2"
+  RD6006_power_multiplier: "0.01"
   
   RD6006P_voltage_maximum: "60"
   RD6006P_voltage_accuracy: "3"
@@ -21,6 +23,8 @@ substitutions:
   RD6006P_current_maximum: "6"
   RD6006P_current_accuracy: "4"
   RD6006P_current_multiplier: "0.0001"
+  RD6006P_power_accuracy: "3"
+  RD6006P_power_multiplier: "0.001"
 
   RD6012_voltage_maximum: "60"
   RD6012_voltage_accuracy: "2"
@@ -28,6 +32,8 @@ substitutions:
   RD6012_current_maximum: "12"
   RD6012_current_accuracy: "2"
   RD6012_current_multiplier: "0.01"
+  RD6012_power_accuracy: "2"
+  RD6012_power_multiplier: "0.01"
 
   RD6018_voltage_maximum: "60"
   RD6018_voltage_accuracy: "2"
@@ -35,6 +41,8 @@ substitutions:
   RD6018_current_maximum: "18"
   RD6018_current_accuracy: "2"
   RD6018_current_multiplier: "0.01"
+  RD6018_power_accuracy: "2"
+  RD6018_power_multiplier: "0.01"
 
 esphome:
   name: $device_name
@@ -203,9 +211,9 @@ sensor:
     unit_of_measurement: "W"
     register_type: holding
     value_type: U_DWORD
-    accuracy_decimals: 2
+    accuracy_decimals: ${${model}_power_accuracy}
     filters:
-      - multiply: 0.01
+      - multiply: ${${model}_power_multiplier}
 
   - platform: modbus_controller
     modbus_controller_id: powersupply
@@ -216,9 +224,9 @@ sensor:
     unit_of_measurement: "V"
     register_type: holding
     value_type: U_WORD
-    accuracy_decimals: ${${model}_voltage_accuracy}
+    accuracy_decimals: 2
     filters:
-      - multiply: ${${model}_voltage_multiplier}
+      - multiply: 0.01
 
   - platform: modbus_controller
     modbus_controller_id: powersupply
@@ -256,9 +264,9 @@ sensor:
     unit_of_measurement: "V"
     register_type: holding
     value_type: U_WORD
-    accuracy_decimals: ${${model}_voltage_accuracy}
+    accuracy_decimals: 2
     filters:
-      - multiply: ${${model}_voltage_multiplier}
+      - multiply: 0.01
   
   - platform: modbus_controller
     name: "Temperature"
